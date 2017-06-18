@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Subject} from 'rxjs';
 
+import { ClipboardService} from './clipboard.service'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public clipboard: ClipboardService) {
   }
 
   ionViewDidEnter(){
@@ -121,6 +123,7 @@ export class HomePage {
 
       speechSynthesis.speak(msg);
       theMotherOfTheRato.registry.push({msg: txt, date: new Date()});
+      theMotherOfTheRato.clipboard.copy(txt);
     }
 
     function addChar(char) {
